@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33712.159
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "net-store-backend", "net-store-backend.csproj", "{B000F1A4-6481-4015-9593-8806C935FC7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{1B63D431-3F8A-4A36-997D-4E999B640E4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B000F1A4-6481-4015-9593-8806C935FC7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B000F1A4-6481-4015-9593-8806C935FC7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B000F1A4-6481-4015-9593-8806C935FC7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B000F1A4-6481-4015-9593-8806C935FC7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44D6AE22-2DAD-48A9-9AB6-416AC1E51D34}
+	EndGlobalSection
+EndGlobal
