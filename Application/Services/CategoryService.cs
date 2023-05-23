@@ -22,6 +22,10 @@ namespace net_store_backend.Application.Services
             return categoriesDto;
         }
 
-       
+        public CategoryDto GetCategory(long id)
+        {
+            var category = _categoryRepository.GetById(id);
+            return _mapper.Map<CategoryDto>(category);
+        }
     }
 }

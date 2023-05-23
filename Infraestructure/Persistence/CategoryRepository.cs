@@ -16,5 +16,15 @@ namespace net_store_backend.Infraestructure.Persistence
         {
             return _storeContext.Categories.ToList<Category>();
         }
+
+        public Category GetById(long id)
+        {
+            var category = _storeContext.Categories.Find(id);
+            if (category == null)
+            {
+                throw new ElementNotFoundException();
+            }
+            return category;
+        }
     }
 }

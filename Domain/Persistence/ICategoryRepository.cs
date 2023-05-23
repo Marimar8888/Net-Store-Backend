@@ -7,5 +7,6 @@ namespace net_store_backend.Domain.Persistence
     public interface ICategoryRepository
     {
         List<Category> GetAll();
+        Category GetById(long id);
     }
 }
