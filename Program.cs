@@ -1,8 +1,15 @@
 using net_store_backend.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System.Data.Common;
+using net_store_backend.Application.Services;
+using net_store_backend.Domain.Persistence;
+using net_store_backend.Application.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<ICategoriesService, CategoryService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddAutoMapper(typeof(CategoryMapperProfile));
+
 
 // Add services to the container.
 
