@@ -6,5 +6,6 @@ namespace net_store_backend.Application.Services
     {
         List<CategoryDto> GetAllCategories();
         CategoryDto GetCategory(long id);
+        CategoryDto InsertCategory(CategoryDto categoryDto);
     }
 }

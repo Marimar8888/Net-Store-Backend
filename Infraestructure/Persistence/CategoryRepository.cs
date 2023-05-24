@@ -26,5 +26,12 @@ namespace net_store_backend.Infraestructure.Persistence
             }
             return category;
         }
+
+        public Category Insert(Category category)
+        {
+            _storeContext.Categories.Add(category);
+            _storeContext.SaveChanges();
+            return category;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using net_store_backend.Application.Dtos;
+using net_store_backend.Domain.Entities;
 using net_store_backend.Domain.Persistence;
 
 namespace net_store_backend.Application.Services
@@ -25,6 +26,13 @@ namespace net_store_backend.Application.Services
         public CategoryDto GetCategory(long id)
         {
             var category = _categoryRepository.GetById(id);
+            return _mapper.Map<CategoryDto>(category);
+        }
+
+        public CategoryDto InsertCategory(CategoryDto categoryDto)
+        {
+            Category category = _mapper.Map<Category>(categoryDto);
+            category = _categoryRepository.Insert(category);
             return _mapper.Map<CategoryDto>(category);
         }
     }

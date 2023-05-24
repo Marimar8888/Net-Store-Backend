@@ -34,6 +34,17 @@ namespace net_store_backend.Infraestructure.Rest
             }catch (ElementNotFoundException) { 
                 return NotFound();
             }
+        }
+
+        [HttpPost]
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        public ActionResult<CategoryDto> InsertCategory(CategoryDto categoryDto)
+        {
+            if(categoryDto == null)
+                return BadRequest();
+            categoryDto = _categoriesService.InsertCategory(categoryDto);
+            return CreatedAtAction(nameof(GetCategory), new { id = categoryDto.Id }, categoryDto);
      
         }
 
