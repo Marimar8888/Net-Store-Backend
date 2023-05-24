@@ -8,6 +8,7 @@ namespace net_store_backend.Domain.Entities
     [Table("categories")]
     public class Category
     {
+        [Key]
         public long Id { get; set; }
         [Column(TypeName = "vachar(100)")]
         [MinLength(3)]

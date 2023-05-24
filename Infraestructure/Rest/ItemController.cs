@@ -6,11 +6,10 @@ namespace net_store_backend.Infraestructure.Rest
 {
     [Route("store/[controller]")]
     [ApiController]
-    public class CategoriesController:GenericCrudController<CategoryDto>
+    public class ItemController : GenericCrudController<ItemDto>
     {
-        public CategoriesController(ICategoriesService categoriesService):base(categoriesService)
+        public ItemController(IItemService service) : base(service)
         {
         }
     }
 }
-
