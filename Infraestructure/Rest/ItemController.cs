@@ -11,5 +11,20 @@ namespace net_store_backend.Infraestructure.Rest
         public ItemController(IItemService service) : base(service)
         {
         }
+
+        [NonAction]
+        public override ActionResult<IEnumerable<ItemDto>> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet("/store/categories/{categoryId}/items")]
+        [Produces("application/json")]
+        public ActionResult<IEnumerable<ItemDto>> GetAllFromCategory(long categoryId) {
+            var categories = ((IItemService)_service).GetAllByCategory(categoryId);
+            return Ok(categories);
+        }
+
+
     }
 }
