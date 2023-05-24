@@ -42,5 +42,10 @@ namespace net_store_backend.Application.Services
             category = _categoryRepository.Update(category);
             return _mapper.Map<CategoryDto>(category);
         }
+
+        public void DeleteCategory(long id)
+        {
+            _categoryRepository.Delete(id);
+        }
     }
 }

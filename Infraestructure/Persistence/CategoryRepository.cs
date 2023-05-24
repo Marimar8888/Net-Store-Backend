@@ -40,5 +40,14 @@ namespace net_store_backend.Infraestructure.Persistence
             _storeContext.SaveChanges();
             return category;
         }
+
+        public void Delete(long id)
+        {
+            var category = _storeContext.Categories.Find(id);
+            if (category == null)
+                throw new ElementNotFoundException();
+            _storeContext.Categories.Remove(category);
+            _storeContext.SaveChanges();
+        }
     }
 }

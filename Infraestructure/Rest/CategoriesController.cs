@@ -58,5 +58,17 @@ namespace net_store_backend.Infraestructure.Rest
             return Ok(categoryDto);
         }
 
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCategory(long id)
+        {
+            try { 
+            _categoriesService.DeleteCategory(id);
+            return NoContent();
+            }catch (ElementNotFoundException)
+            {
+                return NotFound();
+            }              
+        }
     }
 }
+
