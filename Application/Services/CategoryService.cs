@@ -35,5 +35,12 @@ namespace net_store_backend.Application.Services
             category = _categoryRepository.Insert(category);
             return _mapper.Map<CategoryDto>(category);
         }
+
+        public CategoryDto UpdateCategory(CategoryDto categoryDto)
+        {
+            Category category = _mapper.Map<Category>(categoryDto);
+            category = _categoryRepository.Update(category);
+            return _mapper.Map<CategoryDto>(category);
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace net_store_backend.Domain.Persistence
         List<Category> GetAll();
         Category GetById(long id);
         Category Insert(Category category);
+        Category Update(Category category);
     }
 }

@@ -33,5 +33,12 @@ namespace net_store_backend.Infraestructure.Persistence
             _storeContext.SaveChanges();
             return category;
         }
+
+        public Category Update(Category category)
+        {
+            _storeContext.Categories.Update(category);
+            _storeContext.SaveChanges();
+            return category;
+        }
     }
 }

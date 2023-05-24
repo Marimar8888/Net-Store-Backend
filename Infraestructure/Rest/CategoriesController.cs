@@ -45,7 +45,17 @@ namespace net_store_backend.Infraestructure.Rest
                 return BadRequest();
             categoryDto = _categoriesService.InsertCategory(categoryDto);
             return CreatedAtAction(nameof(GetCategory), new { id = categoryDto.Id }, categoryDto);
-     
+        }
+
+        [HttpPut]
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        public ActionResult<CategoryDto>  UpdateCategory(CategoryDto categoryDto)
+        {
+            if (categoryDto == null)
+                return BadRequest();
+            categoryDto = _categoriesService.UpdateCategory(categoryDto);
+            return Ok(categoryDto);
         }
 
     }
