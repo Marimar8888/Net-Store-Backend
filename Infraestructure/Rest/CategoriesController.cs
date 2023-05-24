@@ -20,7 +20,7 @@ namespace net_store_backend.Infraestructure.Rest
         [Produces("application/json")]
         public ActionResult<IEnumerable<CategoryDto>> GetCategories()
         {
-            var categories = _categoriesService.GetAllCategories();
+            var categories = _categoriesService.GetAll();
             return Ok(categories);
         }
         
@@ -29,7 +29,7 @@ namespace net_store_backend.Infraestructure.Rest
         public ActionResult<CategoryDto> GetCategory(long id) {
             try
             {
-                CategoryDto categoryDto = _categoriesService.GetCategory(id);
+                CategoryDto categoryDto = _categoriesService.Get(id);
                 return Ok(categoryDto);
             }catch (ElementNotFoundException) { 
                 return NotFound();
@@ -43,7 +43,7 @@ namespace net_store_backend.Infraestructure.Rest
         {
             if(categoryDto == null)
                 return BadRequest();
-            categoryDto = _categoriesService.InsertCategory(categoryDto);
+            categoryDto = _categoriesService.Insert(categoryDto);
             return CreatedAtAction(nameof(GetCategory), new { id = categoryDto.Id }, categoryDto);
         }
 
@@ -54,7 +54,7 @@ namespace net_store_backend.Infraestructure.Rest
         {
             if (categoryDto == null)
                 return BadRequest();
-            categoryDto = _categoriesService.UpdateCategory(categoryDto);
+            categoryDto = _categoriesService.Update(categoryDto);
             return Ok(categoryDto);
         }
 
@@ -62,7 +62,7 @@ namespace net_store_backend.Infraestructure.Rest
         public ActionResult DeleteCategory(long id)
         {
             try { 
-            _categoriesService.DeleteCategory(id);
+            _categoriesService.Delete(id);
             return NoContent();
             }catch (ElementNotFoundException)
             {
