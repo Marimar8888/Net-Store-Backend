@@ -6,7 +6,7 @@ namespace net_store_backend.Infraestructure.Rest
 {
     [Route("store/[controller]")]
     [ApiController]
-    public class ItemController : GenericCrudController<ItemDto>
+    public class ItemController : GenericCrudController<ItemDto> 
     {
         public ItemController(IItemService service) : base(service)
         {
@@ -21,10 +21,8 @@ namespace net_store_backend.Infraestructure.Rest
         [HttpGet("/store/categories/{categoryId}/items")]
         [Produces("application/json")]
         public ActionResult<IEnumerable<ItemDto>> GetAllFromCategory(long categoryId) {
-            var categories = ((IItemService)_service).GetAllByCategory(categoryId);
-            return Ok(categories);
+            var categoriesDto = ((IItemService)_service).GetAllByCategoryId(categoryId);
+            return Ok(categoriesDto);
         }
-
-
     }
 }

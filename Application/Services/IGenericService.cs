@@ -1,6 +1,4 @@
-﻿using net_store_backend.Application.Dtos;
-
-namespace net_store_backend.Application.Services
+﻿namespace net_store_backend.Application.Services
 {
     public interface IGenericService <D> where D : class
     {

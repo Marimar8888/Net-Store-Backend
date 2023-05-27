@@ -1,9 +1,10 @@
-﻿using net_store_backend.Domain.Entities;
+﻿using net_store_backend.Application.Dtos;
+using net_store_backend.Domain.Entities;
 
 namespace net_store_backend.Domain.Persistence
 {
     public interface IItemRepository : IGenericRepository<Item>
     {
-        List<Item> GetByCategoryId(long categoryId);
+        List<ItemDto> GetByCategoryId(long categoryId);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace net_store_backend.Application.Services
 {
-    public interface ICategoriesService: IGenericService<CategoryDto>
+    public interface ICategoryService: IGenericService<CategoryDto>
     {
     }
 }

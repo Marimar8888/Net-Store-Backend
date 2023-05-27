@@ -3,10 +3,13 @@ using net_store_backend.Domain.Persistence;
 
 namespace net_store_backend.Infraestructure.Persistence
 {
-    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
+    public class CategoryRepository:GenericRepository<Category>, ICategoryRepository
     {
-        public CategoryRepository(StoreContext storeContext) : base(storeContext)
+        private StoreContext _storeContext;
+
+        public CategoryRepository(StoreContext context) : base(context)
         {
+            _storeContext = context;
         }
     }
 }

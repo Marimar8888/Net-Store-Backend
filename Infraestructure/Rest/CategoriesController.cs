@@ -8,7 +8,7 @@ namespace net_store_backend.Infraestructure.Rest
     [ApiController]
     public class CategoriesController:GenericCrudController<CategoryDto>
     {
-        public CategoriesController(ICategoriesService categoriesService):base(categoriesService)
+        public CategoriesController(ICategoryService categoryService):base(categoryService)
         {
         }
     }
