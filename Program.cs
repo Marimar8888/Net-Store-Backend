@@ -5,6 +5,7 @@ using net_store_backend.Domain.Persistence;
 using net_store_backend.Application.Mappings;
 using Microsoft.AspNetCore.Diagnostics;
 using net_store_backend.Infraestructure.Specs;
+using net_store_backend.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,11 +14,13 @@ builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddScoped(typeof(ISpecificationParser<>), typeof(SpecificationParser<>));
+builder.Services.AddScoped<IImageVerifier, ImageVerifier>();
 builder.Services.AddAutoMapper(typeof(CategoryMapperProfile));
 builder.Services.AddAutoMapper(typeof(ItemMapperProfile));
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddLogging();
 //Agregar la configuración para las URLs en minúsculas
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
