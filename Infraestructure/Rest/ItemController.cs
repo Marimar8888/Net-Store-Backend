@@ -1,15 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using net_store_backend.Application;
 using net_store_backend.Application.Dtos;
 using net_store_backend.Application.Services;
+
 
 namespace net_store_backend.Infraestructure.Rest
 {
     [Route("store/[controller]")]
     [ApiController]
-    public class ItemController : GenericCrudController<ItemDto> 
+    public class ItemController : GenericCrudController<ItemDto>
     {
+        private IItemService _itemService;
+
         public ItemController(IItemService service) : base(service)
         {
+            _itemService = service;
         }
 
         [NonAction]
@@ -23,6 +28,29 @@ namespace net_store_backend.Infraestructure.Rest
         public ActionResult<IEnumerable<ItemDto>> GetAllFromCategory(long categoryId) {
             var categoriesDto = ((IItemService)_service).GetAllByCategoryId(categoryId);
             return Ok(categoriesDto);
+        }
+
+        [HttpGet]
+        [Produces("application/json")]
+        public ActionResult<PagedResponse<ItemDto>> Get([FromQuery] string? filter, [FromQuery] PaginationParameters paginationParameters)
+        {
+            try
+            {   
+                PagedList<ItemDto> page = _itemService.GetItemByCriteriaPaged(filter, paginationParameters);
+                var response = new PagedResponse<ItemDto>
+                {
+                    CurrentPage = page.CurrentPage,
+                    TotalPages = page.TotalPages,
+                    PageSize = page.PageSize,
+                    TotalCount = page.TotalCount,
+                    Data = page 
+                };
+                return Ok(response);
+
+            }catch (MalformedFilterException) 
+            {
+                return BadRequest();
+            }
         }
     }
 }

@@ -49,5 +49,7 @@ namespace net_store_backend.Application.Services
         {
             _repository.Delete(id);
         }
+
+    
     }
 }
