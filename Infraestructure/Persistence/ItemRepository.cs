@@ -65,9 +65,9 @@ namespace net_store_backend.Infraestructure.Persistence
             return items.ToList();
         }
 
-        public PagedList<Item> GetItemsByCriteriaPaged(string? filter, PaginationParameters paginationParameters)
+        public PagedList<ItemDto> GetItemsByCriteriaPaged(string? filter, PaginationParameters paginationParameters)
         {
-            var items = _storeContext.Items.Include(i => i.Category).AsQueryable();
+            var items = _storeContext.Items.AsQueryable();
 
             if (!string.IsNullOrEmpty(filter))
             {
@@ -78,7 +78,19 @@ namespace net_store_backend.Infraestructure.Persistence
             {
                 items = ApplySortOrder(items, paginationParameters.Sort);
             }
-            return PagedList<Item>.ToPagedList(items, paginationParameters.PageNumber, paginationParameters.PageSize);
+
+            var itemsDto = items.Select(i => new ItemDto
+            {
+                Id = i.Id,
+                Name = i.Name,
+                Description = i.Description,
+                Price = i.Price,
+                Image = i.Image,
+                CategoryId = i.CategoryId,
+                CategoryName = i.Category.Name
+            });
+
+            return PagedList<ItemDto>.ToPagedList(itemsDto, paginationParameters.PageNumber, paginationParameters.PageSize);
         }
     }
 }
