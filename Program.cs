@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using net_store_backend.Application.Services;
 using net_store_backend.Domain.Persistence;
 using net_store_backend.Application.Mappings;
+using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ if (builder.Environment.IsDevelopment())
 
 var app = builder.Build();
 
+ConfigureExceptionHandler(app);
+
 if (builder.Environment.IsDevelopment())
 {
     using var scope = app.Services.CreateScope();
@@ -50,3 +53,28 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+static void ConfigureExceptionHandler(WebApplication app)
+{
+    app.UseExceptionHandler(errorApp =>
+    { 
+        errorApp.Run(async context =>
+        {
+            IExceptionHandlerPathFeature? exceptionHandlerPathFeature =
+             context.Features.Get<IExceptionHandlerPathFeature>();
+            var logger = app.Services.GetRequiredService<ILogger<Program>>();
+
+            if(exceptionHandlerPathFeature?.Error != null)
+            {
+                logger.LogError(exceptionHandlerPathFeature.Error, "An unhandler ocurred while processing the request.");
+            }
+            else
+            {
+                logger.LogError("An unhandler ocurred while processing the request.");
+            }
+            context.Response.StatusCode = 500;
+            await context.Response.WriteAsync("An unhandler ocurred while processing the request.");
+
+        });
+    });
+}
