@@ -1,4 +1,4 @@
-﻿using net_store_backend.Domain.Entities;
+﻿    using net_store_backend.Domain.Entities;
 
 namespace net_store_backend.Infraestructure.Persistence
 {
@@ -18,6 +18,7 @@ namespace net_store_backend.Infraestructure.Persistence
             {
                 LoadCategories();
             }
+            storeContext.SaveChanges();
             if (!storeContext.Items.Any())
             {
                 LoadItems();

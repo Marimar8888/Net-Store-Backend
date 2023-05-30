@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace net_store_backend.Domain.Entities
 {
+   
     public class Item
     {
         public long Id { get; set; }
-        [Column(TypeName = "vachar(100)")]
+        [Column(TypeName = "varchar(100)")]
         [MinLength(3)]
         [MaxLength(100)]
         [Required]
