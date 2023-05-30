@@ -29,8 +29,15 @@ namespace net_store_backend.Infraestructure.Rest
 
         public override ActionResult<CategoryDto> Update(CategoryDto categoryDto)
         {
-            _logger.LogInformation("Invalid image updating category with {categoryDto.Id} Id", categoryDto.Id);
-            return BadRequest();
+            try
+            {
+                return base.Update(categoryDto);
+            }
+            catch (InvalidImageException)
+            {
+                _logger.LogInformation("Invalid image updating category with {categoryDto.Id} Id", categoryDto.Id);
+                return BadRequest();
+            }
         }
     }
 }
